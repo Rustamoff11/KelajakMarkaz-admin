@@ -1,0 +1,535 @@
+/* ============ Tema o'zgaruvchilari ============ */
+/* AppShell.jsx <html data-theme="dark|light"> ni boshqaradi (localStorage: km-theme) */
+
+:root,
+[data-theme="dark"] {
+  --tm-bg: #0b1220;
+  --tm-surface: #131c2e;
+  --tm-surface-2: #17223a;
+  --tm-border: rgba(255, 255, 255, 0.07);
+  --tm-text: #eef1f8;
+  --tm-text-muted: #8b96b4;
+  --tm-text-faint: #5b6884;
+  --tm-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+  --tm-hover: rgba(255, 255, 255, 0.04);
+
+  --tm-purple: #7c6df2;
+  --tm-purple-bg: rgba(124, 109, 242, 0.16);
+  --tm-teal: #16c9a4;
+  --tm-teal-bg: rgba(22, 201, 164, 0.16);
+  --tm-red: #f0506e;
+  --tm-red-bg: rgba(240, 80, 110, 0.16);
+  --tm-amber: #f0a24d;
+  --tm-amber-bg: rgba(240, 162, 77, 0.16);
+  --tm-blue: #4f8cf0;
+  --tm-blue-bg: rgba(79, 140, 240, 0.16);
+}
+
+[data-theme="light"] {
+  --tm-bg: #f4f6fb;
+  --tm-surface: #ffffff;
+  --tm-surface-2: #f6f8fc;
+  --tm-border: #e6e9f2;
+  --tm-text: #1b2333;
+  --tm-text-muted: #6b7590;
+  --tm-text-faint: #97a1b8;
+  --tm-shadow: 0 2px 14px rgba(20, 30, 60, 0.06);
+  --tm-hover: rgba(20, 30, 60, 0.035);
+
+  --tm-purple: #6d5ae6;
+  --tm-purple-bg: rgba(109, 90, 230, 0.1);
+  --tm-teal: #0fae8b;
+  --tm-teal-bg: rgba(15, 174, 139, 0.1);
+  --tm-red: #e0324f;
+  --tm-red-bg: rgba(224, 50, 79, 0.1);
+  --tm-amber: #d98a2c;
+  --tm-amber-bg: rgba(217, 138, 44, 0.12);
+  --tm-blue: #3576e0;
+  --tm-blue-bg: rgba(53, 118, 224, 0.1);
+}
+
+/* ============ Umumiy joylashuv ============ */
+
+.tm-page {
+  color: var(--tm-text);
+  font-family: inherit;
+}
+
+.tm-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+
+.tm-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.tm-breadcrumb {
+  margin: 0;
+  font-size: 13px;
+  color: var(--tm-text-muted);
+}
+
+.tm-breadcrumb span {
+  margin: 0 4px;
+}
+
+.tm-header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.tm-error {
+  background: var(--tm-red-bg);
+  color: var(--tm-red);
+  border: 1px solid var(--tm-red);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+/* ============ Tugmalar ============ */
+
+.tm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 9px 14px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s, opacity 0.15s;
+}
+
+.tm-btn-primary {
+  background: var(--tm-purple);
+  color: #fff;
+}
+.tm-btn-primary:hover { opacity: 0.9; }
+.tm-btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.tm-btn-ghost {
+  background: var(--tm-surface);
+  color: var(--tm-text);
+  border-color: var(--tm-border);
+}
+.tm-btn-ghost:hover { background: var(--tm-hover); }
+
+.tm-btn-outline {
+  background: transparent;
+  color: var(--tm-text);
+  border-color: var(--tm-border);
+  width: 100%;
+  justify-content: center;
+}
+.tm-btn-outline:hover { background: var(--tm-hover); }
+
+.tm-btn-icon {
+  background: var(--tm-surface);
+  border-color: var(--tm-border);
+  padding: 9px;
+  color: var(--tm-text-muted);
+}
+.tm-btn-icon:hover { background: var(--tm-hover); }
+
+.tm-btn-sm { padding: 6px 10px; font-size: 12.5px; }
+
+/* ============ Statistik kartalar ============ */
+
+.tm-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.tm-stat-card {
+  background: var(--tm-surface);
+  border: 1px solid var(--tm-border);
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  box-shadow: var(--tm-shadow);
+}
+
+.tm-stat-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tone-purple { background: var(--tm-purple-bg); color: var(--tm-purple); }
+.tone-teal { background: var(--tm-teal-bg); color: var(--tm-teal); }
+.tone-red { background: var(--tm-red-bg); color: var(--tm-red); }
+.tone-amber { background: var(--tm-amber-bg); color: var(--tm-amber); }
+.tone-blue { background: var(--tm-blue-bg); color: var(--tm-blue); }
+
+.tm-stat-value { font-size: 20px; font-weight: 700; margin: 0; line-height: 1.2; }
+.tm-stat-label { font-size: 12.5px; color: var(--tm-text-muted); margin: 2px 0 0; }
+.tm-stat-sub { font-size: 11.5px; color: var(--tm-teal); margin: 3px 0 0; }
+.tm-stat-sub.negative { color: var(--tm-red); }
+
+/* ============ Asboblar paneli ============ */
+
+.tm-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.tm-view-toggle {
+  display: flex;
+  background: var(--tm-surface);
+  border: 1px solid var(--tm-border);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.tm-view-toggle button {
+  border: none;
+  background: transparent;
+  color: var(--tm-text-muted);
+  padding: 6px 9px;
+  border-radius: 7px;
+  cursor: pointer;
+  display: flex;
+}
+
+.tm-view-toggle button.active {
+  background: var(--tm-purple);
+  color: #fff;
+}
+
+.tm-count {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--tm-text-muted);
+}
+
+.tm-toolbar-right {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.tm-dropdown { position: relative; }
+
+.tm-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 190px;
+  background: var(--tm-surface);
+  border: 1px solid var(--tm-border);
+  border-radius: 10px;
+  box-shadow: var(--tm-shadow);
+  padding: 6px;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+}
+
+.tm-dropdown-menu button {
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: var(--tm-text);
+  padding: 8px 10px;
+  border-radius: 7px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.tm-dropdown-menu button:hover { background: var(--tm-hover); }
+.tm-dropdown-menu button.active { color: var(--tm-purple); font-weight: 600; }
+
+.tm-filter-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--tm-text-faint);
+  padding: 6px 10px 2px;
+  margin: 0;
+}
+
+.tm-card-menu { min-width: 140px; }
+.tm-danger { color: var(--tm-red) !important; }
+
+/* ============ Grid ko'rinishi ============ */
+
+.tm-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.tm-card {
+  background: var(--tm-surface);
+  border: 1px solid var(--tm-border);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: var(--tm-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tm-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.tm-card-top h3 {
+  font-size: 15.5px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.tm-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.tm-badge.faol { background: var(--tm-teal-bg); color: var(--tm-teal); }
+.tm-badge.nofaol { background: var(--tm-red-bg); color: var(--tm-red); }
+
+.tm-card-location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12.5px;
+  color: var(--tm-text-muted);
+  margin: -4px 0 0;
+}
+
+.tm-card-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  background: var(--tm-surface-2);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.tm-card-metrics > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tm-metric-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.tm-metric-icon.violet { background: var(--tm-purple-bg); color: var(--tm-purple); }
+.tm-metric-icon.amber { background: var(--tm-amber-bg); color: var(--tm-amber); }
+
+.tm-metric-label { font-size: 11px; color: var(--tm-text-muted); margin: 0; }
+.tm-metric-value { font-size: 13.5px; font-weight: 700; margin: 0; }
+
+.tm-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ============ Ro'yxat (jadval) ko'rinishi ============ */
+
+.tm-table-wrap {
+  background: var(--tm-surface);
+  border: 1px solid var(--tm-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--tm-shadow);
+}
+
+.tm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.tm-table th {
+  text-align: left;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--tm-text-faint);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--tm-border);
+}
+
+.tm-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--tm-border);
+}
+
+.tm-table tr:last-child td { border-bottom: none; }
+.tm-table td:last-child { display: flex; gap: 8px; }
+
+/* ============ Holat / bo'sh / xato ============ */
+
+.tm-loading,
+.tm-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 60px 0;
+  color: var(--tm-text-muted);
+  font-size: 14px;
+}
+
+.tm-spin { animation: tm-rotate 0.9s linear infinite; }
+@keyframes tm-rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* ============ Sahifalash ============ */
+
+.tm-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 22px;
+}
+
+.tm-pagination button {
+  min-width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--tm-border);
+  background: var(--tm-surface);
+  color: var(--tm-text);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.tm-pagination button.active {
+  background: var(--tm-purple);
+  border-color: var(--tm-purple);
+  color: #fff;
+  font-weight: 700;
+}
+
+.tm-pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ============ Modal (Tuman qo'shish) ============ */
+
+.tm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 12, 22, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.tm-modal {
+  width: 380px;
+  max-width: 90vw;
+  background: var(--tm-surface);
+  border: 1px solid var(--tm-border);
+  border-radius: 16px;
+  box-shadow: var(--tm-shadow);
+}
+
+.tm-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--tm-border);
+}
+
+.tm-modal-header h3 { margin: 0; font-size: 15.5px; }
+.tm-modal-header button {
+  background: none;
+  border: none;
+  color: var(--tm-text-muted);
+  cursor: pointer;
+}
+
+.tm-modal-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.tm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--tm-text-muted);
+}
+
+.tm-field input {
+  border: 1px solid var(--tm-border);
+  background: var(--tm-surface-2);
+  color: var(--tm-text);
+  border-radius: 9px;
+  padding: 9px 11px;
+  font-size: 13.5px;
+}
+
+.tm-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--tm-text);
+}
+
+.tm-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+/* ============ Moslashuvchan (responsive) ============ */
+
+@media (max-width: 1200px) {
+  .tm-stats { grid-template-columns: repeat(3, 1fr); }
+  .tm-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .tm-stats { grid-template-columns: repeat(2, 1fr); }
+  .tm-grid { grid-template-columns: 1fr; }
+  .tm-toolbar-right { margin-left: 0; }
+}

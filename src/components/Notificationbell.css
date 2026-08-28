@@ -1,0 +1,200 @@
+.km-notif-wrap {
+  position: relative;
+}
+
+.km-notif-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 320px;
+  max-height: 420px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #edf0f4;
+  box-shadow: 0 12px 32px rgba(16, 24, 40, 0.16);
+  z-index: 50;
+  overflow: hidden;
+}
+
+.km-notif-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid #edf0f4;
+}
+.km-notif-header h4 {
+  margin: 0;
+  font-size: 14px;
+  color: #101828;
+}
+
+.km-notif-spin {
+  animation: km-notif-spin 0.8s linear infinite;
+  color: #98a2b3;
+}
+@keyframes km-notif-spin {
+  to { transform: rotate(360deg); }
+}
+
+.km-notif-body {
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.km-notif-error {
+  color: #b42318;
+  background: #fef3f2;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12.5px;
+  margin: 4px;
+}
+
+.km-notif-empty {
+  text-align: center;
+  color: #98a2b3;
+  font-size: 13px;
+  padding: 28px 12px;
+}
+
+.km-notif-section {
+  margin-bottom: 6px;
+}
+.km-notif-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #98a2b3;
+  padding: 8px 10px 4px;
+}
+
+.km-notif-item {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  text-align: left;
+  padding: 8px 10px;
+  border: none;
+  background: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.km-notif-item:hover {
+  background: #f9fafb;
+}
+.km-notif-item-icon {
+  margin-top: 2px;
+  color: #4f46e5;
+  flex-shrink: 0;
+}
+.km-notif-item-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #101828;
+}
+.km-notif-item-sub {
+  font-size: 12px;
+  color: #667085;
+  margin-top: 1px;
+}
+
+/* ---------- To'liq xabar modali ---------- */
+.km-notif-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 24, 40, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 16px;
+}
+
+.km-notif-modal {
+  background: #fff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 460px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(16, 24, 40, 0.25);
+}
+
+.km-notif-modal-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px 20px;
+  border-bottom: 1px solid #edf0f4;
+}
+.km-notif-modal-header-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: #4f46e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.km-notif-modal-header-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.km-notif-modal-header-text h3 {
+  margin: 0;
+  font-size: 15.5px;
+  color: #101828;
+  line-height: 1.3;
+}
+
+.km-notif-status {
+  display: inline-block;
+  width: fit-content;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 600;
+  background: #f2f4f7;
+  color: #475467;
+}
+.km-notif-status-kutilmoqda { background: #fef6e7; color: #b54708; }
+.km-notif-status-korib_chiqilmoqda { background: #f0f9ff; color: #026aa2; }
+.km-notif-status-javob_berilgan,
+.km-notif-status-tasdiqlangan { background: #eafaf1; color: #067647; }
+.km-notif-status-yopilgan,
+.km-notif-status-rad_etilgan { background: #fef3f2; color: #b42318; }
+
+.km-notif-modal-meta {
+  padding: 14px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid #edf0f4;
+}
+.km-notif-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #475467;
+}
+.km-notif-meta-row strong {
+  color: #101828;
+}
+
+.km-notif-modal-body-text {
+  padding: 18px 20px;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #344054;
+  white-space: pre-wrap;
+}

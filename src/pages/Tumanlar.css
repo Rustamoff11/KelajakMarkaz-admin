@@ -1,0 +1,173 @@
+/* ===== Tumanlar ro'yxati page — unique styles ===== */
+
+/* ---------- Summary cards ---------- */
+.km-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.km-summary-card {
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.km-summary-icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.km-summary-body { min-width: 0; }
+.km-summary-label { font-size: 12px; color: var(--text-600); margin: 0 0 4px 0; white-space: nowrap; }
+.km-summary-value-row { display: flex; align-items: baseline; gap: 8px; }
+.km-summary-value { font-size: 19px; font-weight: 700; color: var(--text-900); }
+.km-summary-delta { font-size: 11.5px; font-weight: 700; color: var(--green-fg); }
+
+/* ---------- Filter bar ---------- */
+.km-filter-bar {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr auto;
+  gap: 14px;
+  align-items: end;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+
+.km-filter-field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+.km-filter-field label { font-size: 11.5px; color: var(--text-600); font-weight: 500; }
+
+.km-filter-search {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  background: #f4f6fa;
+  border-radius: 10px;
+  padding: 10px 14px;
+  justify-self: stretch;
+}
+.km-filter-search input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 13px;
+  width: 100%;
+  color: var(--text-900);
+}
+
+.km-filter-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-900);
+  cursor: pointer;
+  background: var(--card);
+}
+
+.km-filter-clear {
+  height: 40px;
+  border-color: var(--border);
+  color: var(--blue-600);
+}
+
+/* ---------- Table card ---------- */
+.km-table-card { padding: 6px 20px 18px 20px; }
+.km-table-card .km-table { margin-top: 8px; }
+
+.km-districts-table th, .km-districts-table td { white-space: nowrap; }
+
+.km-district-link {
+  color: var(--blue-600);
+  font-weight: 600;
+  cursor: pointer;
+}
+.km-district-link:hover { text-decoration: underline; }
+
+.km-row-actions { display: flex; align-items: center; gap: 6px; }
+
+.km-detail-btn {
+  height: 32px;
+  padding: 0 12px;
+  font-size: 12px;
+  color: var(--blue-600);
+  border-color: var(--border);
+}
+
+/* ---------- Table footer / pagination ---------- */
+.km-table-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.km-table-count { font-size: 12.5px; color: var(--text-400); white-space: nowrap; }
+
+.km-pagination { display: flex; align-items: center; gap: 6px; }
+
+.km-page-btn {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 6px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text-600);
+  font-size: 12.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.km-page-btn:hover:not(:disabled) { background: #f4f6fa; }
+.km-page-btn:disabled { opacity: 0.4; cursor: default; }
+.km-page-btn.active {
+  background: var(--blue-600);
+  border-color: var(--blue-600);
+  color: #fff;
+}
+
+.km-page-ellipsis { color: var(--text-400); font-size: 12.5px; padding: 0 2px; }
+
+.km-page-size {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--text-600);
+  white-space: nowrap;
+}
+
+.km-page-size-select {
+  padding: 6px 10px;
+  font-size: 12.5px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1280px) {
+  .km-summary-grid { grid-template-columns: repeat(3, 1fr); }
+  .km-filter-bar { grid-template-columns: 1fr 1fr; }
+  .km-filter-clear { grid-column: span 2; justify-self: start; }
+}
+@media (max-width: 860px) {
+  .km-summary-grid { grid-template-columns: repeat(2, 1fr); }
+  .km-table-card { overflow-x: auto; }
+}

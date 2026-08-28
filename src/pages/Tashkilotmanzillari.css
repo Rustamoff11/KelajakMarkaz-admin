@@ -1,0 +1,315 @@
+/* Tashkilot manzillari — page-specific styles.
+   Shared classes (km-card, km-page-header, km-table, km-btn-primary, .muted)
+   already exist in Dashboard.css and are reused as-is.
+   Only the .km-btn-secondary fallback below is added in case it isn't
+   defined yet elsewhere — remove this block if it already exists. */
+
+.km-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid #e4e7ec;
+  background: #fff;
+  color: #475467;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.km-btn-secondary:hover {
+  background: #f9fafb;
+}
+
+/* ---------- Filters ---------- */
+
+.tm-filters {
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.tm-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d2939;
+  margin: 0 0 16px;
+}
+
+.tm-filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.tm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.tm-field label {
+  font-size: 13px;
+  color: #667085;
+}
+
+.tm-field input,
+.tm-field select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e4e7ec;
+  font-size: 14px;
+  color: #1d2939;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.tm-field input:focus,
+.tm-field select:focus {
+  border-color: #2f6fed;
+  box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.12);
+}
+
+.tm-field input.tm-error,
+.tm-field select.tm-error {
+  border-color: #fda29b;
+}
+
+.tm-error-text {
+  margin: 0;
+  font-size: 12px;
+  color: #e64545;
+}
+
+.tm-field-row {
+  display: flex;
+  gap: 12px;
+}
+
+.tm-select-wrap {
+  position: relative;
+}
+
+.tm-select-wrap select {
+  appearance: none;
+  padding-right: 34px;
+  background: #fff;
+}
+
+.tm-select-chevron {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #98a2b3;
+  pointer-events: none;
+}
+
+/* ---------- Table card ---------- */
+
+.tm-table-card {
+  padding: 20px;
+}
+
+.tm-table-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.tm-count-badge {
+  background: #eaf1ff;
+  color: #2f6fed;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.tm-status-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.tm-status-tag.red {
+  background: #fef3f2;
+  color: #e64545;
+}
+.tm-status-tag.green {
+  background: #e6f9f5;
+  color: #0fae8f;
+}
+
+.tm-outline-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #bcd3fb;
+  background: #fff;
+  color: #2f6fed;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.tm-outline-btn:hover {
+  background: #f4f8ff;
+}
+
+.tm-empty {
+  text-align: center;
+  padding: 32px 0;
+  color: #98a2b3;
+}
+.tm-empty svg {
+  display: block;
+  margin: 0 auto 8px;
+}
+
+/* ---------- Pagination ---------- */
+
+.tm-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.tm-page-btn {
+  min-width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid #e4e7ec;
+  background: #fff;
+  color: #667085;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+.tm-page-btn.active {
+  border-color: #2f6fed;
+  background: #eaf1ff;
+  color: #2f6fed;
+  font-weight: 600;
+}
+.tm-page-btn:hover:not(.active) {
+  background: #f9fafb;
+}
+
+/* ---------- Modal ---------- */
+
+.tm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 24, 40, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+}
+
+.tm-modal {
+  width: 100%;
+  max-width: 440px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(16, 24, 40, 0.18);
+  overflow: hidden;
+}
+
+.tm-modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 22px;
+  border-bottom: 1px solid #f2f4f7;
+}
+.tm-modal-head h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1d2939;
+}
+.tm-modal-head p {
+  margin: 4px 0 0;
+  font-size: 13.5px;
+  color: #667085;
+}
+
+.tm-icon-btn {
+  border: none;
+  background: none;
+  color: #98a2b3;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+}
+.tm-icon-btn:hover {
+  background: #f2f4f7;
+  color: #475467;
+}
+
+.tm-modal-body {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tm-hint {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 12.5px;
+  color: #667085;
+  margin: 0;
+}
+.tm-hint svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tm-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 22px;
+  border-top: 1px solid #f2f4f7;
+}
+
+/* ---------- Toast ---------- */
+
+.tm-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #101828;
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(16, 24, 40, 0.25);
+  z-index: 1000;
+}
+
+@media (max-width: 640px) {
+  .tm-field-row {
+    flex-direction: column;
+  }
+}
