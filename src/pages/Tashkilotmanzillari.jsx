@@ -206,7 +206,7 @@ function PasswordGate({ onUnlock }) {
           <Lock size={22} />
         </div>
         <h3>Bo'lim himoyalangan</h3>
-        <p>Davom etish uchun maxsus parolni kiriting</p>
+        <p>Ushbu bo'limni ochish uchun maxsus kodni kiriting</p>
         <input
           type="password"
           autoFocus
@@ -215,7 +215,7 @@ function PasswordGate({ onUnlock }) {
             setValue(e.target.value);
             if (error) setError("");
           }}
-          placeholder="Parolni kiriting"
+          placeholder="Maxsus kod"
           className={error ? "tm-error" : ""}
         />
         {error && <p className="tm-error-text">{error}</p>}

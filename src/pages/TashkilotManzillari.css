@@ -313,3 +313,114 @@
     flex-direction: column;
   }
 }
+
+/* ---------- Password gate (bo'limni ochish uchun maxsus kod) ---------- */
+
+.tm-gate-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(16, 24, 40, 0.55);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1200;
+}
+
+.tm-gate-card {
+  width: 100%;
+  max-width: 380px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 24px 48px rgba(16, 24, 40, 0.22);
+  padding: 32px 28px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: tm-gate-pop 0.22s ease-out;
+}
+
+@keyframes tm-gate-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.tm-gate-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #eaf1ff;
+  color: #2f6fed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.tm-gate-card h3 {
+  margin: 0 0 6px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #1d2939;
+}
+
+.tm-gate-card p {
+  margin: 0 0 20px;
+  font-size: 13.5px;
+  color: #667085;
+  line-height: 1.4;
+}
+
+.tm-gate-card input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #e4e7ec;
+  font-size: 15px;
+  text-align: center;
+  letter-spacing: 2px;
+  color: #1d2939;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.tm-gate-card input:focus {
+  border-color: #2f6fed;
+  box-shadow: 0 0 0 3px rgba(47, 111, 237, 0.12);
+}
+
+.tm-gate-card input.tm-error {
+  border-color: #fda29b;
+}
+
+.tm-gate-card .tm-error-text {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.tm-gate-btn {
+  width: 100%;
+  margin-top: 18px;
+  justify-content: center;
+}
+
+.tm-gate-shake {
+  animation: tm-gate-pop 0.22s ease-out, tm-gate-shake-move 0.4s ease;
+}
+
+@keyframes tm-gate-shake-move {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
