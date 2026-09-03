@@ -8,6 +8,7 @@ import {
   X,
   Search,
   Loader2,
+  Lock,
 } from "lucide-react";
 import AppShell from "./AppShell"; // <-- Dashboard.jsx dagi bilan bir xil yo'l
 import { supabase } from "../supabaseClient";
@@ -26,6 +27,14 @@ import "./TashkilotManzillari.css";
 /* ------------------------------------------------------------------ */
 
 const TABLE_NAME = "tashkilot_manzillari";
+
+/* ------------------------------------------------------------------ */
+/*  Bo'limni ochish uchun maxsus parol                                  */
+/*  DIQQAT: bu parol faqat frontend (JS) kodida saqlanadi, ya'ni        */
+/*  brauzer devtools orqali ko'rish mumkin — haqiqiy xavfsizlik emas,   */
+/*  faqat oddiy ekranlovchi to'siq (gate) sifatida ishlaydi.            */
+/* ------------------------------------------------------------------ */
+const ACCESS_PASSWORD = "199719772003";
 
 /** Barcha tumanlar ro'yxatini olib keladi (filtr va modal uchun) */
 async function fetchTumanlarApi() {
@@ -167,6 +176,55 @@ function resolveStatus(school) {
     !Number.isNaN(Number(school.lat)) &&
     !Number.isNaN(Number(school.lng));
   return hasCoords ? "Biriktirilgan" : "Biriktirilmagan";
+}
+
+/* ------------------------------------------------------------------ */
+/*  Parol qulfi — bo'lim ochilishidan oldin ko'rsatiladigan ekran       */
+/* ------------------------------------------------------------------ */
+
+function PasswordGate({ onUnlock }) {
+  const [value, setValue] = useState("");
+  const [error, setError] = useState("");
+  const [shake, setShake] = useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (value === ACCESS_PASSWORD) {
+      setError("");
+      onUnlock();
+    } else {
+      setError("Parol noto'g'ri, qayta urinib ko'ring");
+      setShake(true);
+      setTimeout(() => setShake(false), 400);
+    }
+  }
+
+  return (
+    <div className="tm-gate-overlay">
+      <form className={`tm-gate-card${shake ? " tm-gate-shake" : ""}`} onSubmit={handleSubmit}>
+        <div className="tm-gate-icon">
+          <Lock size={22} />
+        </div>
+        <h3>Bo'lim himoyalangan</h3>
+        <p>Davom etish uchun maxsus parolni kiriting</p>
+        <input
+          type="password"
+          autoFocus
+          value={value}
+          onChange={(e) => {
+            setValue(e.target.value);
+            if (error) setError("");
+          }}
+          placeholder="Parolni kiriting"
+          className={error ? "tm-error" : ""}
+        />
+        {error && <p className="tm-error-text">{error}</p>}
+        <button type="submit" className="km-btn-primary tm-gate-btn">
+          Ochish
+        </button>
+      </form>
+    </div>
+  );
 }
 
 /* ------------------------------------------------------------------ */
@@ -314,6 +372,8 @@ function AddressModal({ school, tumanlarList, onClose, onSave, isSaving }) {
 /* ------------------------------------------------------------------ */
 
 export default function TashkilotManzillari({ session, onSignOut, onNavigate }) {
+  const [unlocked, setUnlocked] = useState(false);
+
   const [schools, setSchools] = useState([]);
   const [tumanlarList, setTumanlarList] = useState([]);
   const [tumanFilter, setTumanFilter] = useState(""); // tuman_id
@@ -324,15 +384,17 @@ export default function TashkilotManzillari({ session, onSignOut, onNavigate }) 
   const [loadError, setLoadError] = useState("");
   const [isSaving, setIsSaving] = useState(false);
 
-  // Tumanlar ro'yxatini bir marta bazadan olib kelamiz
+  // Tumanlar ro'yxatini bir marta bazadan olib kelamiz — faqat parol
+  // to'g'ri kiritilgandan keyin (bekorga so'rov yubormaslik uchun)
   useEffect(() => {
+    if (!unlocked) return;
     fetchTumanlarApi()
       .then((list) => {
         setTumanlarList(list);
         if (list.length > 0) setTumanFilter(list[0].id);
       })
       .catch(() => setLoadError("Tumanlar ro'yxatini yuklashda xatolik"));
-  }, []);
+  }, [unlocked]);
 
   const loadSchools = useCallback(async () => {
     if (!tumanFilter) return;
@@ -349,8 +411,9 @@ export default function TashkilotManzillari({ session, onSignOut, onNavigate }) 
   }, [tumanFilter, holatFilter]);
 
   useEffect(() => {
+    if (!unlocked) return;
     loadSchools();
-  }, [loadSchools]);
+  }, [unlocked, loadSchools]);
 
   async function handleSave(payload) {
     setIsSaving(true);
@@ -372,6 +435,16 @@ export default function TashkilotManzillari({ session, onSignOut, onNavigate }) 
     } finally {
       setIsSaving(false);
     }
+  }
+
+  // Parol hali kiritilmagan bo'lsa, faqat qulf ekranini ko'rsatamiz —
+  // AppShell va jadval umuman render qilinmaydi
+  if (!unlocked) {
+    return (
+      <AppShell active="tashkilot-manzillari" onNavigate={onNavigate} onSignOut={onSignOut}>
+        <PasswordGate onUnlock={() => setUnlocked(true)} />
+      </AppShell>
+    );
   }
 
   // Server tomonda tuman/holat bo'yicha filtrlangan va "raqami" bo'yicha
